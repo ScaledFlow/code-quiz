@@ -4,10 +4,14 @@ var quizNote =
   "Try to answer the following code related questions withing the time limit. Keep in mind that incorect answers will penalize your scoretime by ten seonds!";
 
 var h1El = document.createElement("h1");
+var h2El = document.createElement("h2");
+var h3El = document.createElement("h3");
 var h4El = document.createElement("h4");
 // var divEl = document.createElement("div");
 var buttonEl = document.createElement("button");
 var buttonE2 = document.createElement("button");
+
+var secondsLeft = 3;
 
 init();
 
@@ -32,8 +36,8 @@ btnQS.addEventListener("click", function () {
   body.removeChild(h1El);
   body.removeChild(h4El);
   body.removeChild(buttonEl);
+  setTime();
   prepQuiz();
-  startTimer();
 });
 
 function prepQuiz() {
@@ -47,11 +51,30 @@ function prepQuiz() {
   }
 }
 
-function startTimer() {
-  console.log("Timer Started");
+function setTime() {
+  console.log("Set Time");
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+    // timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+    h3El.textContent = "Time Remaining = " + secondsLeft;
+    body.appendChild(h3El);
+
+    if (secondsLeft === 0) {
+      clearInterval(timerInterval);
+      results();
+    }
+  }, 1000);
+}
+
+function results() {
+  console.log("results");
+  body.removeChild(h3El);
+  h2El.textContent = "Report Score";
+  body.appendChild(h2El);
 }
 
 function setHighScore(score) {
+  body.appendChild(h2El);
   localStorage.setItem("highScore", score);
   console.log("Set the score to = " + score);
 }
