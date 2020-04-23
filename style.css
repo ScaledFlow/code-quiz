@@ -30,7 +30,6 @@ p {
 }
 
 .btn {
-  /* position: relative; */
   margin-top: 20px;
   background-color: #33b2f6; /* blue */
   border: none;
@@ -40,13 +39,29 @@ p {
   text-decoration: none;
   font-size: 16px;
   margin-top: 50px;
-  margin-left: 635px;
+  margin-left: 220px;
   float: left;
-  /* opacity: 0.6;
-  transition: 0.3s; */
 }
 
 .btn:hover {
+  background-color: #0288d1;
+}
+
+.btnQuiz {
+  margin-top: 20px;
+  background-color: #33b2f6; /* blue */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 50px;
+  margin-left: 500px;
+  float: left;
+}
+
+.btnQuiz:hover {
   background-color: #0288d1;
 }
 
