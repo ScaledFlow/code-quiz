@@ -8,7 +8,9 @@ var quizQuestions = [
       c: "Brendan Eich",
       d: "Ray Tomlinson",
     },
-    answer: "c",
+    answer: {
+      correct: "Brendan Eich",
+    },
   },
 
   {
@@ -19,7 +21,9 @@ var quizQuestions = [
       c: "class",
       d: "prototype",
     },
-    answer: "d",
+    answer: {
+      correct: "prototype",
+    },
   },
 
   {
@@ -29,7 +33,9 @@ var quizQuestions = [
       a: "True",
       b: "False",
     },
-    answer: "b",
+    answer: {
+      correct: "False",
+    },
   },
 
   {
@@ -40,7 +46,9 @@ var quizQuestions = [
       c: "dynamically",
       d: "none of the above",
     },
-    answer: "a",
+    answer: {
+      correct: "Weakly",
+    },
   },
 
   {
@@ -50,7 +58,9 @@ var quizQuestions = [
       a: "True",
       b: "False",
     },
-    answer: "a",
+    answer: {
+      correct: "True",
+    },
   },
 
   {
@@ -59,7 +69,9 @@ var quizQuestions = [
       a: "True",
       b: "False",
     },
-    answer: "b",
+    answer: {
+      correct: "True",
+    },
   },
 
   {
@@ -71,7 +83,9 @@ var quizQuestions = [
       c: "Property",
       d: "Data Type",
     },
-    answer: "b",
+    answer: {
+      correct: "Object",
+    },
   },
 
   {
@@ -83,18 +97,9 @@ var quizQuestions = [
       c: "Property",
       d: "Data Type",
     },
-    answer: "b",
-  },
-
-  {
-    question:
-      "Which can be used to dynamically change the behavior, display and interactions of a page.",
-    choices: {
-      a: "HTML",
-      b: "JavaScript",
-      c: "CSS",
+    answer: {
+      correct: "Object",
     },
-    answer: "c",
   },
 
   {
@@ -106,18 +111,9 @@ var quizQuestions = [
       c: "Javascript",
       d: "JSON",
     },
-    answer: "b",
-  },
-
-  {
-    question:
-      "Which can be used to dynamically change the behavior, display and interactions of a page.",
-    choices: {
-      a: "HTML",
-      b: "JavaScript",
-      c: "CSS",
+    answer: {
+      correct: "CSS",
     },
-    answer: "c",
   },
 
   {
@@ -129,7 +125,9 @@ var quizQuestions = [
       c: "function myFunction() {return;}",
       d: "function name() {}",
     },
-    answer: "a",
+    answer: {
+      correct: "function foo() {}();",
+    },
   },
 
   {
@@ -139,7 +137,9 @@ var quizQuestions = [
       a: "True",
       b: "False",
     },
-    answer: "b",
+    answer: {
+      correct: "False",
+    },
   },
 
   {
@@ -151,7 +151,9 @@ var quizQuestions = [
       c: "undefined",
       d: "return",
     },
-    answer: "d",
+    answer: {
+      correct: "return",
+    },
   },
 
   {
@@ -161,7 +163,9 @@ var quizQuestions = [
       a: "True",
       b: "False",
     },
-    answer: "a",
+    answer: {
+      correct: "True",
+    },
   },
 
   {
@@ -171,7 +175,9 @@ var quizQuestions = [
       a: "True",
       b: "False",
     },
-    answer: "a",
+    answer: {
+      correct: "False",
+    },
   },
 
   {
@@ -180,7 +186,9 @@ var quizQuestions = [
       a: "True",
       b: "False",
     },
-    answer: "b",
+    answer: {
+      correct: "False",
+    },
   },
 
   {
@@ -191,7 +199,9 @@ var quizQuestions = [
       c: "console.log(1 === 1);",
       d: "console.log('1' === 1);",
     },
-    answer: "d",
+    answer: {
+      correct: "console.log('1' === 1)",
+    },
   },
 
   {
@@ -201,15 +211,22 @@ var quizQuestions = [
       a: "True",
       b: "False",
     },
-    answer: "a",
+    answer: {
+      correct: "True",
+    },
   },
 ];
+
 var selQuestion = "";
 var choiceA = "";
 var choiceB = "";
 var choiceC = "";
 var choiceD = "";
 var selAnswer = "";
+
+// selAnswer = quizQuestions[0].answer.correct;
+// console.log("A = " + selAnswer);
+// console.log();
 
 for (i = 0; i < quizQuestions.length; i++) {
   selQuestion = quizQuestions[i].question;
@@ -224,7 +241,7 @@ for (i = 0; i < quizQuestions.length; i++) {
   if (typeof choiceC != "undefined") console.log(choiceC);
   if (typeof choiceD != "undefined") console.log(choiceD);
 
-  selAnswer = quizQuestions[i].answer;
+  selAnswer = quizQuestions[i].answer.correct;
   console.log("A = " + selAnswer);
   console.log("***********************");
 }
