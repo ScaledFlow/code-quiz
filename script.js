@@ -15,11 +15,13 @@ var quizBtnE2 = document.createElement("button");
 var quizBtnE3 = document.createElement("button");
 var quizBtnE4 = document.createElement("button");
 
-var secondsLeft = 5;
+var secondsLeft = 10000;
 var sessionScore = 0;
 var lastHighScore = 0;
 var questionNumber = 0;
 var displayCount = 0;
+//var q1;
+var btnQS;
 
 init();
 
@@ -47,6 +49,7 @@ btnQS.addEventListener("click", function () {
   body.removeChild(buttonEl);
   setTime();
   prepQuiz();
+  displayQuestionCtl();
 });
 
 function prepQuiz() {
@@ -58,7 +61,6 @@ function prepQuiz() {
     setHighScore(score);
     console.log("highScore Value = " + highScore);
   }
-  displayQuestionCtl();
 }
 
 function setTime() {
@@ -70,7 +72,7 @@ function setTime() {
     h3El.textContent = "Seconds Remaining = " + secondsLeft;
     body.appendChild(h3El);
 
-    console.log("seconds left = " + secondsLeft);
+    // console.log("seconds left = " + secondsLeft);
 
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
@@ -82,6 +84,7 @@ function setTime() {
 
 var qNum = 0;
 function displayQuestionCtl() {
+  qNum += 1;
   console.log("displayQuestionCtl");
   h1El.textContent = "Question - " + (qNum + 1);
   body.appendChild(h1El);
@@ -112,52 +115,41 @@ function displayQuestionCtl() {
   body.appendChild(quizBtnE4);
   q4 = document.querySelector("#quizBtnE4");
 
-  console.log("q1 value =  " + q1);
-  console.log("q2 value =  " + q2);
-  console.log("q3 value =  " + q3);
-  console.log("q4 value =  " + q4);
+  // console.log("q1 value =  " + q1);
+  // console.log("q2 value =  " + q2);
+  // console.log("q3 value =  " + q3);
+  // console.log("q4 value =  " + q4);
+
+  q1.addEventListener("click", function () {
+    clearQuestions();
+  });
+
+  q2.addEventListener("click", function () {
+    clearQuestions();
+  });
+
+  q3.addEventListener("click", function () {
+    clearQuestions();
+  });
+
+  q4.addEventListener("click", function () {
+    clearQuestions();
+  });
 }
 
-q1.addEventListener("click", function () {
-  console.log("q1.addEventListener");
-  console.log("after = " + q1);
-  body.removeChild(h1El);
-  body.removeChild(h4El);
-  body.removeChild(quizBtnE1);
-});
-
-q2.addEventListener("click", function () {
-  console.log("q2.addEventListener");
-  console.log("after = " + q2);
-  body.removeChild(h1El);
-  body.removeChild(h4El);
-  body.removeChild(quizBtnE1);
-});
-
-q3.addEventListener("click", function () {
-  console.log("q3.addEventListener");
-  console.log("after = " + q3);
-  body.removeChild(h1El);
-  body.removeChild(h4El);
-  body.removeChild(quizBtnE1);
-});
-
-q4.addEventListener("click", function () {
-  console.log("q4.addEventListener");
-  console.log("after = " + q4);
-  body.removeChild(h1El);
-  body.removeChild(h4El);
-  body.removeChild(quizBtnE1);
-});
-
 function clearQuestions() {
+  console.log("clearQuestions");
   body.removeChild(h1El);
   body.removeChild(h4El);
   body.removeChild(quizBtnE1);
   body.removeChild(quizBtnE2);
   body.removeChild(quizBtnE3);
   body.removeChild(quizBtnE4);
-  body.removeChild(h3El);
+  //body.removeChild(h3El);
+  if (secondsLeft > 0) {
+    displayQuestionCtl();
+    console.log("clear questions seconds left" + secondsLeft);
+  }
 }
 
 function displayQuestion() {
