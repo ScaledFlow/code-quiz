@@ -8,6 +8,7 @@ var h2El = document.createElement("h2");
 var h3El = document.createElement("h3");
 var h4El = document.createElement("h4");
 // var divEl = document.createElement("div");
+var breakP = document.createElement("br");
 var buttonEl = document.createElement("button");
 var quizBtnE1 = document.createElement("button");
 var quizBtnE2 = document.createElement("button");
@@ -69,10 +70,11 @@ function setTime() {
     h3El.textContent = "Seconds Remaining = " + secondsLeft;
     body.appendChild(h3El);
 
-    console.log("do something " + secondsLeft);
+    console.log("seconds left = " + secondsLeft);
 
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
+      clearQuestions();
       results();
     }
   }, 1000);
@@ -83,51 +85,80 @@ function displayQuestionCtl() {
   console.log("displayQuestionCtl");
   h1El.textContent = "Question - " + (qNum + 1);
   body.appendChild(h1El);
-  h4El.textContent = getChoiceA(qNum);
+  h4El.textContent = getQuestion(qNum);
   body.appendChild(h4El);
 
   quizBtnE1.textContent = getChoiceA(qNum);
   quizBtnE1.setAttribute("class", "btn");
   quizBtnE1.setAttribute("id", "quizBtnE1");
   body.appendChild(quizBtnE1);
-  var q1 = document.querySelector("#quizBtnE1");
+  q1 = document.querySelector("#quizBtnE1");
 
-  quizBtnE2.textContent = "Quiz selection 2";
+  quizBtnE2.textContent = getChoiceB(qNum);
   quizBtnE2.setAttribute("class", "btn");
-  quizBtnE2.setAttribute("id", "quizBtnE1");
+  quizBtnE2.setAttribute("id", "quizBtnE2");
   body.appendChild(quizBtnE2);
-  var q2 = document.querySelector("#quizBtnE2");
+  q2 = document.querySelector("#quizBtnE2");
 
-  quizBtnE3.textContent = "Quiz selection 3";
+  quizBtnE3.textContent = getChoiceC(qNum);
   quizBtnE3.setAttribute("class", "btn");
   quizBtnE3.setAttribute("id", "quizBtnE3");
   body.appendChild(quizBtnE3);
-  var q3 = document.querySelector("#quizBtnE3");
+  q3 = document.querySelector("#quizBtnE3");
 
-  quizBtnE4.textContent = "Quiz selection 4";
+  quizBtnE4.textContent = getChoiceD(qNum);
   quizBtnE4.setAttribute("class", "btn");
   quizBtnE4.setAttribute("id", "quizBtnE4");
   body.appendChild(quizBtnE4);
-  var q2 = document.querySelector("#quizBtnE4");
+  q4 = document.querySelector("#quizBtnE4");
 
-  console.log("before = " + q1);
+  console.log("q1 value =  " + q1);
+  console.log("q2 value =  " + q2);
+  console.log("q3 value =  " + q3);
+  console.log("q4 value =  " + q4);
 }
 
 q1.addEventListener("click", function () {
   console.log("q1.addEventListener");
-  console.log("after 2 = " + q1);
+  console.log("after = " + q1);
   body.removeChild(h1El);
   body.removeChild(h4El);
   body.removeChild(quizBtnE1);
 });
 
 q2.addEventListener("click", function () {
-  console.log("q1.addEventListener");
-  console.log("after 2 = " + q2);
+  console.log("q2.addEventListener");
+  console.log("after = " + q2);
   body.removeChild(h1El);
   body.removeChild(h4El);
   body.removeChild(quizBtnE1);
 });
+
+q3.addEventListener("click", function () {
+  console.log("q3.addEventListener");
+  console.log("after = " + q3);
+  body.removeChild(h1El);
+  body.removeChild(h4El);
+  body.removeChild(quizBtnE1);
+});
+
+q4.addEventListener("click", function () {
+  console.log("q4.addEventListener");
+  console.log("after = " + q4);
+  body.removeChild(h1El);
+  body.removeChild(h4El);
+  body.removeChild(quizBtnE1);
+});
+
+function clearQuestions() {
+  body.removeChild(h1El);
+  body.removeChild(h4El);
+  body.removeChild(quizBtnE1);
+  body.removeChild(quizBtnE2);
+  body.removeChild(quizBtnE3);
+  body.removeChild(quizBtnE4);
+  body.removeChild(h3El);
+}
 
 function displayQuestion() {
   h1El.textContent = "Question - " + questionNumber;
@@ -140,13 +171,8 @@ function displayQuestion() {
 }
 
 function results() {
-  // body.removeChild(h1El);
-  console.log("results");
-  // body.removeChild(h3El);
-  // h2El.textContent = "Report Score";
-  // body.removeChild(h4El);
-
-  // body.appendChild(h2El);
+  h2El.textContent = "Report Score";
+  body.appendChild(h2El);
 }
 
 function setHighScore(sessionScore) {

@@ -246,11 +246,27 @@ var selAnswer = "";
 //   console.log("***********************");
 // }
 
-function getChoiceA(qNum) {
-  var text = "test question " + qNum;
+function getQuestion(qNum) {
   selQuestion = quizQuestions[qNum].question;
-  console.log(selQuestion);
-  // console.log("Q = " + selQuestion);
-  // choiceA = quizQuestions[qNum].choices.a;
   return selQuestion;
+}
+
+function getChoiceA(qNum) {
+  choiceA = quizQuestions[qNum].choices.a;
+  return choiceA;
+}
+
+function getChoiceB(qNum) {
+  choiceB = quizQuestions[qNum].choices.b;
+  return choiceB;
+}
+
+function getChoiceC(qNum) {
+  choiceC = quizQuestions[qNum].choices.c;
+  return choiceC;
+}
+
+function getChoiceD(qNum) {
+  choiceD = quizQuestions[qNum].choices.d;
+  return choiceD;
 }
