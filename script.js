@@ -9,16 +9,24 @@ var h3El = document.createElement("h3");
 var h4El = document.createElement("h4");
 // var divEl = document.createElement("div");
 var buttonEl = document.createElement("button");
-var buttonE2 = document.createElement("button");
+var quizBtnE1 = document.createElement("button");
+var quizBtnE2 = document.createElement("button");
+var quizBtnE3 = document.createElement("button");
+var quizBtnE4 = document.createElement("button");
 
-var secondsLeft = 3;
+var secondsLeft = 5;
+var sessionScore = 0;
+var lastHighScore = 0;
+var questionNumber = 0;
+var displayCount = 0;
 
 init();
 
 function init() {
-  // divEl.setAttribute("class", "container");
-  // body.appendChild(divEl);
-
+  lastHighScore = localStorage.getItem("highScore");
+  if (lastHighScore === null) {
+    localStorage.setItem("highScore", 0);
+  }
   h1El.textContent = "Coding Quiz Challenge";
   body.appendChild(h1El);
 
@@ -41,23 +49,27 @@ btnQS.addEventListener("click", function () {
 });
 
 function prepQuiz() {
-  console.log("Start Quiz");
+  console.log("preQuiz");
   var score = 0;
   var highScore = localStorage.getItem("highScore");
-  //localStorage.removeItem("highScore");
+
   if (highScore === null) {
     setHighScore(score);
     console.log("highScore Value = " + highScore);
   }
+  displayQuestionCtl();
 }
 
 function setTime() {
   console.log("Set Time");
+  // body.appendChild(h1El);
   var timerInterval = setInterval(function () {
     secondsLeft--;
-    // timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
-    h3El.textContent = "Time Remaining = " + secondsLeft;
+
+    h3El.textContent = "Seconds Remaining = " + secondsLeft;
     body.appendChild(h3El);
+
+    console.log("do something " + secondsLeft);
 
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
@@ -66,15 +78,90 @@ function setTime() {
   }, 1000);
 }
 
-function results() {
-  console.log("results");
-  body.removeChild(h3El);
-  h2El.textContent = "Report Score";
-  body.appendChild(h2El);
+var qNum = 0;
+function displayQuestionCtl() {
+  console.log("displayQuestionCtl");
+  h1El.textContent = "Question - " + (qNum + 1);
+  body.appendChild(h1El);
+  h4El.textContent = getChoiceA(qNum);
+  body.appendChild(h4El);
+
+  quizBtnE1.textContent = getChoiceA(qNum);
+  quizBtnE1.setAttribute("class", "btn");
+  quizBtnE1.setAttribute("id", "quizBtnE1");
+  body.appendChild(quizBtnE1);
+  var q1 = document.querySelector("#quizBtnE1");
+
+  quizBtnE2.textContent = "Quiz selection 2";
+  quizBtnE2.setAttribute("class", "btn");
+  quizBtnE2.setAttribute("id", "quizBtnE1");
+  body.appendChild(quizBtnE2);
+  var q2 = document.querySelector("#quizBtnE2");
+
+  quizBtnE3.textContent = "Quiz selection 3";
+  quizBtnE3.setAttribute("class", "btn");
+  quizBtnE3.setAttribute("id", "quizBtnE3");
+  body.appendChild(quizBtnE3);
+  var q3 = document.querySelector("#quizBtnE3");
+
+  quizBtnE4.textContent = "Quiz selection 4";
+  quizBtnE4.setAttribute("class", "btn");
+  quizBtnE4.setAttribute("id", "quizBtnE4");
+  body.appendChild(quizBtnE4);
+  var q2 = document.querySelector("#quizBtnE4");
+
+  console.log("before = " + q1);
 }
 
-function setHighScore(score) {
-  body.appendChild(h2El);
-  localStorage.setItem("highScore", score);
-  console.log("Set the score to = " + score);
+q1.addEventListener("click", function () {
+  console.log("q1.addEventListener");
+  console.log("after 2 = " + q1);
+  body.removeChild(h1El);
+  body.removeChild(h4El);
+  body.removeChild(quizBtnE1);
+});
+
+q2.addEventListener("click", function () {
+  console.log("q1.addEventListener");
+  console.log("after 2 = " + q2);
+  body.removeChild(h1El);
+  body.removeChild(h4El);
+  body.removeChild(quizBtnE1);
+});
+
+function displayQuestion() {
+  h1El.textContent = "Question - " + questionNumber;
+  body.appendChild(h1El);
+
+  h4El.textContent = "lkajsdfjas;lfja";
+  body.appendChild(h4El);
+  displayCount += 1;
+  console.log("display question " + displayCount);
+}
+
+function results() {
+  // body.removeChild(h1El);
+  console.log("results");
+  // body.removeChild(h3El);
+  // h2El.textContent = "Report Score";
+  // body.removeChild(h4El);
+
+  // body.appendChild(h2El);
+}
+
+function setHighScore(sessionScore) {
+  // body.appendChild(h2El);
+
+  if (sessionScore < highScore) {
+    localStorage.setItem("highScore", score);
+    console.log("Set the score to = " + score);
+  }
+}
+
+function resetHighScore() {
+  localStorage.setItem("highScore", 0);
+}
+
+function removeLocalStorage() {
+  localStorage.removeItem("highScore");
 }

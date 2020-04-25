@@ -1,7 +1,7 @@
 var quizQuestions = [
   {
     question:
-      "__________ was the creator of JavaScript which was originally name Livescript.",
+      "Who was the creator of JavaScript which was originally name Livescript.",
     choices: {
       a: "Bill Gates",
       b: "Marc Andreessen",
@@ -228,20 +228,29 @@ var selAnswer = "";
 // console.log("A = " + selAnswer);
 // console.log();
 
-for (i = 0; i < quizQuestions.length; i++) {
-  selQuestion = quizQuestions[i].question;
-  console.log("Q = " + selQuestion);
-  choiceA = quizQuestions[i].choices.a;
-  choiceB = quizQuestions[i].choices.b;
-  choiceC = quizQuestions[i].choices.c;
-  choiceD = quizQuestions[i].choices.d;
+// for (i = 0; i < quizQuestions.length; i++) {
+//   selQuestion = quizQuestions[i].question;
+//   console.log("Q = " + selQuestion);
+//   choiceA = quizQuestions[i].choices.a;
+//   choiceB = quizQuestions[i].choices.b;
+//   choiceC = quizQuestions[i].choices.c;
+//   choiceD = quizQuestions[i].choices.d;
 
-  if (typeof choiceA != "undefined") console.log(choiceA);
-  if (typeof choiceB != "undefined") console.log(choiceB);
-  if (typeof choiceC != "undefined") console.log(choiceC);
-  if (typeof choiceD != "undefined") console.log(choiceD);
+//   if (typeof choiceA != "undefined") console.log(choiceA);
+//   if (typeof choiceB != "undefined") console.log(choiceB);
+//   if (typeof choiceC != "undefined") console.log(choiceC);
+//   if (typeof choiceD != "undefined") console.log(choiceD);
 
-  selAnswer = quizQuestions[i].answer.correct;
-  console.log("A = " + selAnswer);
-  console.log("***********************");
+//   selAnswer = quizQuestions[i].answer.correct;
+//   console.log("A = " + selAnswer);
+//   console.log("***********************");
+// }
+
+function getChoiceA(qNum) {
+  var text = "test question " + qNum;
+  selQuestion = quizQuestions[qNum].question;
+  console.log(selQuestion);
+  // console.log("Q = " + selQuestion);
+  // choiceA = quizQuestions[qNum].choices.a;
+  return selQuestion;
 }
