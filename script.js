@@ -15,13 +15,21 @@ var quizBtnE2 = document.createElement("button");
 var quizBtnE3 = document.createElement("button");
 var quizBtnE4 = document.createElement("button");
 
-var secondsLeft = 10000;
+var secondsLeft = 5;
 var sessionScore = 0;
 var lastHighScore = 0;
 var questionNumber = 0;
 var displayCount = 0;
-//var q1;
-var btnQS;
+var qNum = 0;
+var dispQNum = 0;
+var clearQuestionCtn = 0;
+var finalScore = 0;
+
+var answeredA = "";
+var answeredB = "";
+var answeredC = "";
+var answeredD = "";
+var correctAnswer = "";
 
 init();
 
@@ -53,18 +61,15 @@ btnQS.addEventListener("click", function () {
 });
 
 function prepQuiz() {
-  console.log("preQuiz");
   var score = 0;
   var highScore = localStorage.getItem("highScore");
 
   if (highScore === null) {
     setHighScore(score);
-    console.log("highScore Value = " + highScore);
   }
 }
 
 function setTime() {
-  console.log("Set Time");
   // body.appendChild(h1El);
   var timerInterval = setInterval(function () {
     secondsLeft--;
@@ -72,72 +77,117 @@ function setTime() {
     h3El.textContent = "Seconds Remaining = " + secondsLeft;
     body.appendChild(h3El);
 
-    // console.log("seconds left = " + secondsLeft);
-
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
       clearQuestions();
+      clearTimer();
       results();
     }
   }, 1000);
 }
 
-var qNum = 0;
 function displayQuestionCtl() {
-  qNum += 1;
-  console.log("displayQuestionCtl");
-  h1El.textContent = "Question - " + (qNum + 1);
+  console.log(qNum);
+  dispQNum = qNum;
+  h1El.textContent = "Question - " + (dispQNum + 1);
   body.appendChild(h1El);
   h4El.textContent = getQuestion(qNum);
   body.appendChild(h4El);
 
+  // correctAnswer = getAnswer(qNum);
+  // console.log("correctAnswer = " + correctAnswer);
+
   quizBtnE1.textContent = getChoiceA(qNum);
+  answeredA = getChoiceA(qNum);
+  correctAnswer = getAnswer(qNum);
+  console.log("asnweredA = " + answeredA);
+  console.log("correctAnswer = " + correctAnswer);
   quizBtnE1.setAttribute("class", "btn");
   quizBtnE1.setAttribute("id", "quizBtnE1");
   body.appendChild(quizBtnE1);
   q1 = document.querySelector("#quizBtnE1");
 
   quizBtnE2.textContent = getChoiceB(qNum);
+  answeredB = getChoiceB(qNum);
+  correctAnswer = getAnswer(qNum);
+  console.log("asnwered = " + answeredB);
+  console.log("correctAnswer = " + correctAnswer);
   quizBtnE2.setAttribute("class", "btn");
   quizBtnE2.setAttribute("id", "quizBtnE2");
   body.appendChild(quizBtnE2);
   q2 = document.querySelector("#quizBtnE2");
 
   quizBtnE3.textContent = getChoiceC(qNum);
+  answeredC = getChoiceC(qNum);
+  correctAnswer = getAnswer(qNum);
+  console.log("asnweredC = " + answeredC);
+  console.log("correctAnswer = " + correctAnswer);
   quizBtnE3.setAttribute("class", "btn");
   quizBtnE3.setAttribute("id", "quizBtnE3");
   body.appendChild(quizBtnE3);
   q3 = document.querySelector("#quizBtnE3");
 
   quizBtnE4.textContent = getChoiceD(qNum);
+  answeredD = getChoiceD(qNum);
+  correctAnswer = getAnswer(qNum);
+  console.log("asnwereD = " + answeredD);
+  console.log("correctAnswer = " + correctAnswer);
   quizBtnE4.setAttribute("class", "btn");
   quizBtnE4.setAttribute("id", "quizBtnE4");
   body.appendChild(quizBtnE4);
   q4 = document.querySelector("#quizBtnE4");
 
-  // console.log("q1 value =  " + q1);
-  // console.log("q2 value =  " + q2);
-  // console.log("q3 value =  " + q3);
-  // console.log("q4 value =  " + q4);
+  qNum++;
 
   q1.addEventListener("click", function () {
+    if (answeredA === correctAnswer) {
+      finalScore += 10;
+    } else {
+      finalScore -= 10;
+    }
+    console.log(finalScore);
+    console.log("q1");
     clearQuestions();
   });
 
   q2.addEventListener("click", function () {
+    if (answeredB === correctAnswer) {
+      finalScore += 10;
+    } else {
+      finalScore -= 10;
+    }
+    console.log(finalScore);
+    console.log("q2");
     clearQuestions();
   });
 
   q3.addEventListener("click", function () {
+    if (answeredC === correctAnswer) {
+      finalScore += 10;
+    } else {
+      finalScore -= 10;
+    }
+    console.log(finalScore);
+    console.log("q3");
     clearQuestions();
   });
 
   q4.addEventListener("click", function () {
+    if (answeredD === correctAnswer) {
+      finalScore += 10;
+    } else {
+      finalScore -= 10;
+    }
+    console.log(finalScore);
+    console.log("q4");
     clearQuestions();
   });
 }
 
+function clearTimer() {}
+
 function clearQuestions() {
+  clearQuestionCtn += 1;
   console.log("clearQuestions");
   body.removeChild(h1El);
   body.removeChild(h4El);
@@ -146,33 +196,36 @@ function clearQuestions() {
   body.removeChild(quizBtnE3);
   body.removeChild(quizBtnE4);
   //body.removeChild(h3El);
-  if (secondsLeft > 0) {
+  if (secondsLeft > 0 && clearQuestionCtn < 6) {
     displayQuestionCtl();
     console.log("clear questions seconds left" + secondsLeft);
+  } else {
+    sectionsLeft = 0;
+    results();
   }
 }
 
-function displayQuestion() {
-  h1El.textContent = "Question - " + questionNumber;
-  body.appendChild(h1El);
-
-  h4El.textContent = "lkajsdfjas;lfja";
-  body.appendChild(h4El);
-  displayCount += 1;
-  console.log("display question " + displayCount);
-}
-
 function results() {
-  h2El.textContent = "Report Score";
+  h2El.textContent = "All Done!";
   body.appendChild(h2El);
+  h4El.textContent = "Your score is " + finalScore;
+  body.appendChild(h4El);
+  setHighScore(finalScore);
 }
 
-function setHighScore(sessionScore) {
+function setHighScore(finalScore) {
   // body.appendChild(h2El);
+  console.log("last high score " + lastHighScore);
+  if (finalScore > lastHighScore) {
+    localStorage.setItem("highScore", finalScore);
+    // var testst = localStorage.getItem("highScore");
+    // h3El.textContent = "You have the high Score!";
+    // body.appendChild(h3El);
+    h2El.textContent = "High Score!";
+    body.appendChild(h2El);
 
-  if (sessionScore < highScore) {
-    localStorage.setItem("highScore", score);
-    console.log("Set the score to = " + score);
+    console.log("update local storage = " + testst);
+    console.log("Set the high score to = " + finalScore);
   }
 }
 
@@ -183,3 +236,5 @@ function resetHighScore() {
 function removeLocalStorage() {
   localStorage.removeItem("highScore");
 }
+
+//resetHighScore();

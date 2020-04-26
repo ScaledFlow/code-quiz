@@ -270,3 +270,8 @@ function getChoiceD(qNum) {
   choiceD = quizQuestions[qNum].choices.d;
   return choiceD;
 }
+
+function getAnswer(qNum) {
+  correctAnswer = quizQuestions[qNum].answer.correct;
+  return correctAnswer;
+}
