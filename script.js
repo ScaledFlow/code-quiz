@@ -15,7 +15,7 @@ var quizBtnE2 = document.createElement("button");
 var quizBtnE3 = document.createElement("button");
 var quizBtnE4 = document.createElement("button");
 
-var secondsLeft = 5;
+var secondsLeft = 20;
 var sessionScore = 0;
 var lastHighScore = 0;
 var questionNumber = 0;
